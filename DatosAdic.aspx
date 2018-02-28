@@ -37,34 +37,48 @@
      
     </script>
 
+    <style type="text/css">
+        .auto-style1 {
+            height: 43px;
+            width: 211px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
-        <table style="width:100%">
+        <img alt="Logo" class="auto-style1" longdesc="Logo" src="Imagen/BATA%20(rojo).png" /><br />
+        <br />
+        <table style="width:80%;border-width:1px;border-style:solid;border:hidden" border="1" align="center">
             <tr>
-                <td colspan="3" align="center" id="nombre">&nbsp;</td>
+                <td colspan="3" align="center" style="background-color:red;color:white;font-family:'Cooper Black';font-size:24px">
+                    Promoción:<br />
+                    <asp:Label ID="titulo" runat="server" Text="Label"></asp:Label>
+                </td>
             </tr>
             <tr>
-                <td colspan="3" align="center">&nbsp;</td>
+                <td colspan="3" align="center" style="border:hidden">&nbsp;</td>
             </tr>
             <tr>
-                <td align="center"colspan="3">Productos:</td>
+                <td align="center"colspan="3" style="background-color:red;color:white;font-family:'Cooper Black';font-size:16px">Productos:</td>
             </tr>
             <tr>
-                <td align="center">Activadores</td>
-                <td>&nbsp;</td>
-                <td align="center">Promoción</td>
+                <td align="center" style="background-color:red;color:white;font-family:'Cooper Black';font-size:16px;width:47%">Activadores</td>
+                <td rowspan="2" style="border:hidden">&nbsp;</td>
+                <td align="center" style="background-color:red;color:white;font-family:'Cooper Black';font-size:16px;width:47%">Promoción</td>
             </tr>
             <tr>
-                <td align="center"><div id="activ" runat="server">&nbsp;</div></td>
-                <td>&nbsp;</td>
-                <td align="center"><div id="promo" runat="server">&nbsp;</div></td>
+                <td align="center" valign="top" style="border:hidden"><div id="activ" runat="server">&nbsp;</div></td>
+                <td align="center" valign="top" style="border:hidden"><div id="promo" runat="server">&nbsp;</div></td>
             </tr>
             <tr>
-                <td colspan="3" align="center">Tiendas:</td>
+                <td colspan="3" align="center" style="border:hidden">&nbsp;</td>
             </tr>
             <tr>
-                <td colspan="3"align="center"><div id="tda" runat="server">&nbsp;</div></td>
+                <td colspan="3" align="center" style="background-color:red;color:white;font-family:'Cooper Black';font-size:16px">Tiendas:</td>
+            </tr>
+            <tr>
+                <td colspan="3"align="center" style="border:hidden"><div id="tda" runat="server">&nbsp;</div></td>
             </tr>
         </table>
     </form>

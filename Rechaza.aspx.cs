@@ -13,8 +13,14 @@ public partial class _Default : System.Web.UI.Page
     {
         Conexion cn = new Conexion();
         SqlConnection sql = cn.getConexion();
-        
-        Label1.Text = Convert.ToString(Request.QueryString["probar"]);
-        
+                
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string mail = Request.QueryString["mail"];
+        string promo = Request.QueryString["promo"];
+        String Valor = Request["S1"];
+        Response.Redirect("Procesado.aspx?mostrar=2&email=" + mail + "&reg=" + promo + "&text=" + Valor + "");
     }
 }

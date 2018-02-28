@@ -18,16 +18,29 @@
      
     </script>
 
+    <style type="text/css">
+
+        .auto-style1 {
+            height: 43px;
+            width: 211px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-    
-        <asp:Label ID="Label1" runat="server" Text="Procesado..."></asp:Label>
+        <img alt="Logo" class="auto-style1" longdesc="Logo" src="Imagen/BATA%20(rojo).png" />
+    </div>
+        <br />
+        <br />
+        <br />
+    <div style="margin-left: 200px">
+        <asp:Label ID="Label1" runat="server" Text="Procesando..." ForeColor="Red" Font-Names="Cooper Black" Font-Size="Larger"></asp:Label>
     
         <br />
     
-        <asp:Label ID="Label2" runat="server" Text="Favor de cerrar el navegador."></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Favor de cerrar el navegador." ForeColor="Red" Font-Names="Cooper Black" Font-Size="Larger"></asp:Label>
     
     </div>
     </form>

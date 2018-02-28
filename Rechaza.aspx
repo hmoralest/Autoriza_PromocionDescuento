@@ -8,7 +8,6 @@
     <title></title>
     
     <script type="text/javascript">
-
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -34,17 +33,31 @@
             //usado para que no haga postback el boton de asp.net cuando no se acepte el confirm
             return seleccion;
         }
-
-     
     </script>
 
+    <style type="text/css">
+        .auto-style1 {
+            height: 43px;
+            width: 211px;
+        }
+        #TextArea1 {
+            height: 114px;
+            width: 310px;
+        }
+    </style>
+
 </head>
-<body onload="return Confirmacion();">
+<body>
     <form id="form1" runat="server">
     <div>
-    
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    
+        <img alt="Logo" class="auto-style1" longdesc="Logo" src="Imagen/BATA%20(rojo).png" />
+    </div>
+    <div style="text-align:center;color:red;font-family:Cooper Black">    
+        Favor de detallar el motivo de Rechazo:<br />
+        <br />
+        <textarea id="TextArea1" name="S1"></textarea><br />
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Confirmar" BackColor="Red" ForeColor="White" BorderColor="White" Font-Names="Cooper Black" OnClick="Button1_Click"/>
     </div>
     </form>
 </body>

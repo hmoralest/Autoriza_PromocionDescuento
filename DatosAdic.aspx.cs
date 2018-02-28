@@ -13,11 +13,20 @@ public partial class _Default : System.Web.UI.Page
 {
     public static string GetMyTable(DataTable list, params string[] columns)
     {
+        int contar = 0;
         var sb = new StringBuilder();
-        sb.Append("<table>");
+        sb.Append("<table border='1' style='width:100%;border-width:0px;border-style:solid;border:hidden'> ");
         foreach (DataRow item in list.Rows)
         {
-            sb.Append("<tr>");
+            contar = contar + 1;
+            if (contar % 2 == 0)
+            {
+                sb.Append("<tr align='center' style='background-color:#FFC1C1;color:black;font-family:Calibri;font-size:12px;font-weight:bold'>");
+            }
+            else
+            {
+                sb.Append("<tr align='center' style='background-color:#FFEEEE;color:black;font-family:Calibri;font-size:12px;font-weight:bold'>");
+            }
             foreach (var column in columns)
             {
                 sb.Append("<td>");
@@ -39,8 +48,8 @@ public partial class _Default : System.Web.UI.Page
 
         email = Convert.ToString(Request.QueryString["email"]);
         codigo = Convert.ToString(Request.QueryString["promo"]);
-        /*email = "001";
-        codigo= "prueba";*/
+        //email = "001";
+        //codigo= "prueba";
 
         DataTable General = aprueba.ObtenerDatosGral(codigo);
         DataTable Activa = aprueba.ObtenerDatosProdAct(codigo);
@@ -80,6 +89,11 @@ public partial class _Default : System.Web.UI.Page
         activ.InnerHtml = GetMyTable(Activa, "des_artic");
         promo.InnerHtml = GetMyTable(Promo, "des_artic");
         tda.InnerHtml = GetMyTable(Tienda, "des_entid");
+
+        foreach (DataRow row in General.Rows)
+        {
+            titulo.Text = Convert.ToString(row["descrip"]);
+        }
 
     }
 }

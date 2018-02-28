@@ -69,9 +69,9 @@ BEGIN
 				@tabla_promo	As Varchar(max),
 				@tabla_tiendas	As Varchar(max);
 
-		Set @tabla_activa = '<table style="font-family:Lucida Console;font-size:12px"><tr><td style="font-family:Verdana;font-size:16px;font-weight:bold;color:#892B14">Productos Activadores : </td></tr>';
-		Set @tabla_promo = '<table style="font-family:Lucida Console;font-size:12px"><tr><td style="font-family:Verdana;font-size:16px;font-weight:bold;color:#892B14">Productos en Promoción : </td></tr>';
-		Set @tabla_tiendas = '<table style="font-family:Lucida Console;font-size:12px"><tr><td style="font-family:Verdana;font-size:16px;font-weight:bold;color:#892B14">Tiendas : </td></tr>';
+		Set @tabla_activa = '<table style="font-family:Lucida Console;font-size:12px"> <tr> <td style="font-family:Verdana;font-size:16px;font-weight:bold;color:#892B14">Productos Activadores : </td> </tr> ';
+		Set @tabla_promo = '<table style="font-family:Lucida Console;font-size:12px"> <tr> <td style="font-family:Verdana;font-size:16px;font-weight:bold;color:#892B14">Productos en Promoción : </td> </tr> ';
+		Set @tabla_tiendas = '<table style="font-family:Lucida Console;font-size:12px"> <tr> <td style="font-family:Verdana;font-size:16px;font-weight:bold;color:#892B14">Tiendas : </td> </tr> ';
 		
 		--//=========================================\\--
 		--// Obtiene datos de Productos de Activación\\--
@@ -92,7 +92,7 @@ BEGIN
 		WHILE @@FETCH_STATUS = 0
 		BEGIN
 			
-			Set	@tabla_activa += '<tr><td>- ' + @descripcion + '</tr></td>';
+			Set	@tabla_activa += '<tr> <td>- ' + @descripcion + '</td> </tr> ';
 
 			FETCH NEXT FROM tabla1_cursor
 		INTO @descripcion
@@ -120,7 +120,7 @@ BEGIN
 		WHILE @@FETCH_STATUS = 0
 		BEGIN
 			
-			Set	@tabla_promo += '<tr><td>- ' + @descripcion + '</tr></td>';
+			Set	@tabla_promo += '<tr> <td>- ' + @descripcion + '</td> </tr> ';
 
 			FETCH NEXT FROM tabla2_cursor
 		INTO @descripcion
@@ -149,7 +149,7 @@ BEGIN
 		WHILE @@FETCH_STATUS = 0
 		BEGIN
 			
-			Set	@tabla_tiendas += '<tr><td>- ' + @descripcion + '</tr></td>';
+			Set	@tabla_tiendas += '<tr> <td>- ' + @descripcion + '</td> </tr> ';
 
 			FETCH NEXT FROM tabla3_cursor
 		INTO @descripcion
@@ -160,16 +160,16 @@ BEGIN
 
 		--// Se agrega linea final
 		IF((Select count (*) From promociones_det1 Where idpromo = @id_promo And activadorpromo = 1)>5)
-			Set @tabla_activa	+= '<tr><td>- (... más )</tr></td>';
+			Set @tabla_activa	+= '<tr> <td>- (... más )</td> </tr> ';
 		IF((Select count (*) From promociones_det1 Where idpromo = @id_promo And activadorpromo = 2)>5)
-			Set @tabla_promo	+= '<tr><td>- (... más )</tr></td>';
+			Set @tabla_promo	+= '<tr> <td>- (... más )</td> </tr> ';
 		IF((Select count (*) From promociones_det2 Where idpromo = @id_promo)>5)
-			Set @tabla_tiendas	+= '<tr><td>- (... más )</tr></td>';
+			Set @tabla_tiendas	+= '<tr> <td>- (... más )</td> </tr> ';
 
 		--// Se cierra tabla
-		Set @tabla_activa	+= '</table>';
-		Set @tabla_promo	+= '</table>';
-		Set @tabla_tiendas	+= '</table>';
+		Set @tabla_activa	+= ' </table>';
+		Set @tabla_promo	+= ' </table>';
+		Set @tabla_tiendas	+= ' </table>';
 		
 		--//=========================================\\--
 		--// Busca datos de aprobacion y correos	 \\--
@@ -196,71 +196,72 @@ BEGIN
 			-- Asunto del Correo
 			Set @asunto = '[Promociones Bata] Solicitud de Aprobación - ' + @desc_promo;
 			-- Cuerpo del Correo
-			Set @cuerpo  =	'<!DOCTYPE html>';
-			Set @cuerpo +=	'<html>';
-			Set @cuerpo +=	'<head>';
-			Set @cuerpo +=	'<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
-			Set @cuerpo +=	    '<title></title>';
-			Set @cuerpo +=		'<meta charset="utf-8" />';
-			Set @cuerpo +=	'</head>';
-			Set @cuerpo +=	'<body>';
-			Set @cuerpo +=	    '<table style="width:800px;font-family:Calibri;font-size:16px">';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo  =	'<!DOCTYPE html> ';
+			Set @cuerpo +=	'<html> ';
+			Set @cuerpo +=	'<head> ';
+			Set @cuerpo +=	'<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> ';
+			Set @cuerpo +=	    '<title></title> ';
+			Set @cuerpo +=		'<meta charset="utf-8" /> ';
+			Set @cuerpo +=	'</head> ';
+			Set @cuerpo +=	'<body> ';
+			Set @cuerpo +=	    '<table style="width:800px;font-family:Calibri;font-size:16px"> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6" style="font-family:Arial;font-size:16px">Estimado(a) Sr(a). <font style="font-weight:bold">' + @nombre_mail + '</font>,</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">El sistema de solicitudes de ofertas y promociones le informa que se ha generado la siguiente solicitud, que requiere su aprobación:</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td>Descripción:</font></td>';
 			Set @cuerpo +=	            '<td style="font-weight:bold;color:#3275B8">' + @desc_promo + '</td>';
 			Set @cuerpo +=	            '<td colspan="4">&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td>Generado por:</td>';
 			Set @cuerpo +=	            '<td style="font-weight:bold;color:#3275B8">' + @creador + '</td>';
 			Set @cuerpo +=	            '<td>&nbsp;</td>';
 			Set @cuerpo +=	            '<td>Fecha y Hora:</td>';
 			Set @cuerpo +=	            '<td style="font-weight:bold;color:#3275B8">' + Convert(varchar,@fecha_crea,103) + ' ' + Convert(varchar,@fecha_crea,108) + '</td>';
 			Set @cuerpo +=	            '<td>&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=					'<td colspan="3" valign="top">' + @tabla_activa + '</td>';
 			Set @cuerpo +=					'<td colspan="3" valign="top">' + @tabla_promo + '</td>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '  <td colspan="6" valign="top">' + @tabla_tiendas + '</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td>Fecha Vigencia: </td>';
 			Set @cuerpo +=	            '<td colspan="5">Desde:  <font style="font-weight:bold;color:#4EA751">' + Convert(varchar,@fec_ini_vigen,103) + '</font> Hasta: <font style="font-weight:bold;color:#4EA751">' + Convert(varchar,@fec_fin_vigen,103) + '</font></td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr style="font-size:12px;color:#2B5290">';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr style="font-size:12px;color:#2B5290"> ';
 			Set @cuerpo +=	            '<td colspan="6">(Para ver el detalle completo de la solicitud <a href="' + @url_datos_adic + @url_complementa + '">haga clic aquí.</a>)</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr style="font-family:Arial;font-size:16px">';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr style="font-family:Arial;font-size:16px"> ';
 			Set @cuerpo +=	            '<td colspan="4" style="width:600px">Para aprobar o rechazar la solicitud haga clic en el siguiente link:</td>';
-			Set @cuerpo +=	            '<td align="center" style="font-size:20px"><a href=" '+ @url_aprueba + @url_complementa + '"><span>Aprobar</span></a></td>';
-			Set @cuerpo +=	            '<td align="center" style="font-size:20px"><a href="' + @url_rechaza + @url_complementa + '"><span>Rechazar</span></a></td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	            '<td align="center" style="font-size:20px"> <a href="' + @url_aprueba + @url_complementa + '"> <span>Aprobar</span> </a> </td>';
+			Set @cuerpo +=	            '<td align="center" style="font-size:20px"> <a href="' + @url_rechaza + @url_complementa + '"> <span>Rechazar</span> </a> </td>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">&nbsp;</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	        '<tr>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	        '<tr> ';
 			Set @cuerpo +=	            '<td colspan="6">Saludos Cordiales.</td>';
-			Set @cuerpo +=	        '</tr>';
-			Set @cuerpo +=	    '</table>';
+			Set @cuerpo +=	        '</tr> ';
+			Set @cuerpo +=	    '</table> ';
 			Set @cuerpo +=	'</body>';
 			Set @cuerpo +=	'</html>';
 			

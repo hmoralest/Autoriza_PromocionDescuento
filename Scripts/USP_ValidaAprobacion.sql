@@ -6,13 +6,14 @@ GO
 -- Author		: Henry Morales
 -- Create date	: 22/02/2018
 -- Description	: Valida si ya ha realizado una aprobación / rechazo
--- @estado		: 0 = error (ya existe registro)
---				  1 = oK (Listo para registrar)
+-- @estado		: 0 = No existe registro
+--				  1 = Existe Aprobación Previa
+--				  2 = Existe Rechazo Previo
 -- ==========================================================================================
 -- tablas		: aprobaciones
 -- ==========================================================================================
 /*
-	Exec USP_ValidaAprobacion
+	Exec USP_ValidaAprobacion 'prueba','001'
 */
 
 CREATE Procedure USP_ValidaAprobacion(
@@ -25,9 +26,15 @@ BEGIN
 	Declare @estado Int;
 
 	IF Exists (	Select 1	From promociones_aprob	Where iduser = @cod_user And idpromo = @id_promo)
-		Set @estado = 0;
+	BEGIN
+		Select @estado =	CASE estado	WHEN 'A' THEN 1
+										WHEN 'R' THEN 2
+							END
+		From promociones_aprob	
+		Where iduser = @cod_user And idpromo = @id_promo
+	END
 	ELSE
-		Set @estado = 1;
+		Set @estado = 0;
 
 	Select @estado as estado;
 
